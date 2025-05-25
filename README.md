@@ -1,1 +1,1 @@
-"# AI-Sudoku-Solver" 
+# AI Sudoku Solver
