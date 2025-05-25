@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Sudoku Solver</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000, #333333);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #00ffc8;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(9, 40px);
+      gap: 3px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid #555;
+      background-color: #222;
+      color: #00ffc8;
+    }
+    .cell:focus {
+      outline: 2px solid #00ffc8;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #00ffc8;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #00bfa6;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AI Sudoku Solver</h1>
+  <p>Isi angka yang diketahui lalu klik "Solve". Kosongkan dengan 0 atau biarkan kosong.</p>
+  <div class="grid" id="sudokuGrid"></div>
+  <button onclick="solveSudoku()">Solve</button>
+  <button onclick="resetGrid()">Reset</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
