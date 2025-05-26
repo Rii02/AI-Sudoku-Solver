@@ -1,4 +1,4 @@
-# AI Sudoku Solver 🧩
+# AI Sudoku Solver
 
 Solusi Sudoku berbasis AI dengan algoritma Backtracking menggunakan JavaScript.
 
