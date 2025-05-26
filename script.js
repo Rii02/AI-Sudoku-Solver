@@ -20,7 +20,7 @@ function getGrid() {
     let row = [];
     for (let j = 0; j < 9; j++) {
       let val = cells[i * 9 + j].value;
-      row.push(val === '' ? 0 : parseInt(val));
+      row.push(val === '' ? 0 : parseInt(val, 10));
     }
     grid.push(row);
   }
@@ -51,6 +51,24 @@ function isValid(grid, row, col, num) {
   return true;
 }
 
+// Validasi input awal sebelum solve
+function validateGrid(grid) {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      const num = grid[row][col];
+      if (num !== 0) {
+        grid[row][col] = 0;
+        if (!isValid(grid, row, col, num)) {
+          grid[row][col] = num;
+          return false;
+        }
+        grid[row][col] = num;
+      }
+    }
+  }
+  return true;
+}
+
 // Algoritma backtracking untuk menyelesaikan sudoku
 function solve(grid) {
   for (let row = 0; row < 9; row++) {
@@ -73,11 +91,22 @@ function solve(grid) {
 // Fungsi solve saat tombol diklik
 function solveSudoku() {
   let grid = getGrid();
-  if (solve(grid)) {
-    setGrid(grid);
-    alert("Berhasil diselesaikan oleh AI!");
-  } else {
-    alert("Puzzle ini tidak bisa diselesaikan");
+
+  if (!validateGrid(grid)) {
+    alert("Input invalid: ada angka duplikat di baris/kolom/box");
+    return;
+  }
+
+  try {
+    if (solve(grid)) {
+      setGrid(grid);
+      alert("Done Kawann!");
+    } else {
+      alert("Sudoku ini tidak bisa diselesaikan");
+    }
+  } catch (e) {
+    console.error(e);
+    alert("Terjadi error saat menyelesaikan sudoku. Cek input dan coba lagi.");
   }
 }
 
