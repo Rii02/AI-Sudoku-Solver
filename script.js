@@ -6,6 +6,18 @@ for (let i = 0; i < 81; i++) {
   const input = document.createElement('input');
   input.type = 'number';
   input.className = 'cell';
+
+  const row = Math.floor(i / 9);
+  const col = i % 9;
+
+  if ((col + 1) % 3 === 0 && col !== 8) {
+    input.classList.add('right-bold');
+  }
+
+  if ((row + 1) % 3 === 0 && row !== 8) {
+    input.classList.add('bottom-bold');
+  }
+
   input.min = 1;
   input.max = 9;
   input.value = '';
@@ -13,7 +25,6 @@ for (let i = 0; i < 81; i++) {
   gridContainer.appendChild(input);
 }
 
-// Ambil nilai dari grid dan ubah jadi array 2D
 function getGrid() {
   let grid = [];
   for (let i = 0; i < 9; i++) {
@@ -27,7 +38,6 @@ function getGrid() {
   return grid;
 }
 
-// Tampilkan hasil ke input
 function setGrid(grid) {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
@@ -36,7 +46,6 @@ function setGrid(grid) {
   }
 }
 
-// Cek apakah angka valid di posisi (row, col)
 function isValid(grid, row, col, num) {
   for (let i = 0; i < 9; i++) {
     if (grid[row][i] === num || grid[i][col] === num) return false;
@@ -51,7 +60,6 @@ function isValid(grid, row, col, num) {
   return true;
 }
 
-// Validasi input awal sebelum solve
 function validateGrid(grid) {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
@@ -69,7 +77,6 @@ function validateGrid(grid) {
   return true;
 }
 
-// Algoritma backtracking untuk menyelesaikan sudoku
 function solve(grid) {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
@@ -78,7 +85,7 @@ function solve(grid) {
           if (isValid(grid, row, col, num)) {
             grid[row][col] = num;
             if (solve(grid)) return true;
-            grid[row][col] = 0; // backtrack
+            grid[row][col] = 0;
           }
         }
         return false;
@@ -88,29 +95,27 @@ function solve(grid) {
   return true;
 }
 
-// Fungsi solve saat tombol diklik
 function solveSudoku() {
   let grid = getGrid();
 
   if (!validateGrid(grid)) {
-    alert("Input invalid: ada angka duplikat di baris/kolom/box");
+    alert("Input invalid: ada angka duplikat di baris/kolom/box 🎲❌");
     return;
   }
 
   try {
     if (solve(grid)) {
       setGrid(grid);
-      alert("Done Kawann!");
+      alert("Berhasil diselesaikan oleh AI! ✅");
     } else {
-      alert("Sudoku ini tidak bisa diselesaikan");
+      alert("Puzzle ini tidak bisa diselesaikan 😢");
     }
   } catch (e) {
     console.error(e);
-    alert("Terjadi error saat menyelesaikan sudoku. Cek input dan coba lagi.");
+    alert("Ups, terjadi error saat menyelesaikan puzzle. Cek input dan coba lagi.");
   }
 }
 
-// Reset semua input
 function resetGrid() {
   cells.forEach(cell => cell.value = '');
 }

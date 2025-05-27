@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>AI Sudoku Solver</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background: linear-gradient(135deg, #000000, #333333);
       color: #fff;
@@ -11,30 +17,44 @@
       text-align: center;
       padding: 20px;
     }
+
     h1 {
       font-size: 2em;
       margin-bottom: 10px;
       color: #00ffc8;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(9, 40px);
-      gap: 3px;
+      grid-template-rows: repeat(9, 40px);
       justify-content: center;
       margin: 20px auto;
+      /* border: 3px solid #00ffc8; <-- dihapus */
     }
+
     .cell {
       width: 40px;
       height: 40px;
-      text-align: center;
       font-size: 18px;
+      text-align: center;
       border: 1px solid #555;
       background-color: #222;
       color: #00ffc8;
     }
+
+    .cell.bottom-bold {
+      border-bottom: 3px solid #00ffc8;
+    }
+
+    .cell.right-bold {
+      border-right: 3px solid #00ffc8;
+    }
+
     .cell:focus {
       outline: 2px solid #00ffc8;
     }
+
     button {
       padding: 10px 20px;
       margin: 10px;
@@ -45,6 +65,7 @@
       border-radius: 8px;
       font-weight: bold;
     }
+
     button:hover {
       background-color: #00bfa6;
     }
