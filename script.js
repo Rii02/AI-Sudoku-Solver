@@ -99,20 +99,20 @@ function solveSudoku() {
   let grid = getGrid();
 
   if (!validateGrid(grid)) {
-    alert("Input invalid: ada angka duplikat di baris/kolom/box 🎲❌");
+    alert("Input invalid: ada angka duplikat di baris/kolom/box");
     return;
   }
 
   try {
     if (solve(grid)) {
       setGrid(grid);
-      alert("Berhasil diselesaikan oleh AI! ✅");
+      alert("Done Kawann!");
     } else {
-      alert("Puzzle ini tidak bisa diselesaikan 😢");
+      alert("Sudoku ini tidak bisa diselesaikan");
     }
   } catch (e) {
     console.error(e);
-    alert("Ups, terjadi error saat menyelesaikan puzzle. Cek input dan coba lagi.");
+    alert("Terjadi error saat menyelesaikan sudoku. Cek input dan coba lagi.");
   }
 }
 
