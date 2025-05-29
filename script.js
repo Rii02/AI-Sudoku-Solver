@@ -21,6 +21,15 @@ for (let i = 0; i < 81; i++) {
   input.min = 1;
   input.max = 9;
   input.value = '';
+
+  // Validasi agar hanya 1 digit angka 1-9
+  input.addEventListener('input', () => {
+    input.value = input.value.replace(/[^1-9]/g, '');
+    if (input.value.length > 1) {
+      input.value = input.value[0];
+    }
+  });
+
   cells.push(input);
   gridContainer.appendChild(input);
 }

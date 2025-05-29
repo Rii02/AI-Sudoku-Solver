@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Sudoku Solver</title>
   <style>
     * {
@@ -19,24 +20,28 @@
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 2.5rem;
       margin-bottom: 10px;
       color: #00ffc8;
     }
 
+    p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(9, 40px);
-      grid-template-rows: repeat(9, 40px);
-      justify-content: center;
-      margin: 20px auto;
-      /* border: 3px solid #00ffc8; <-- dihapus */
+      grid-template-columns: repeat(9, 1fr);
+      width: min(90vmin, 90vw, 360px);
+      aspect-ratio: 1 / 1;
+      margin: 0 auto 20px;
     }
 
     .cell {
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
+      width: 100%;
+      height: 100%;
+      font-size: clamp(16px, 2vmin, 24px);
       text-align: center;
       border: 1px solid #555;
       background-color: #222;
@@ -57,24 +62,41 @@
 
     button {
       padding: 10px 20px;
-      margin: 10px;
+      margin: 5px;
       background-color: #00ffc8;
       color: #000;
       border: none;
       cursor: pointer;
       border-radius: 8px;
       font-weight: bold;
+      font-size: 1rem;
     }
 
     button:hover {
       background-color: #00bfa6;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .cell {
+        font-size: clamp(20px, 4.5vmin, 28px);
+      }
+
+      button {
+        width: 80%;
+        max-width: 250px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <h1>AI Sudoku Solver</h1>
-  <p>Isi angka yang diketahui lalu klik "Solve". Kosongkan dengan 0 atau biarkan kosong.</p>
+  <p>Isi angka yang diketahui lalu klik "Solve". Jika kosong biarkan kosong.</p>
   <div class="grid" id="sudokuGrid"></div>
   <button onclick="solveSudoku()">Solve</button>
   <button onclick="resetGrid()">Reset</button>
